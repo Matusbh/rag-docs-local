@@ -6,10 +6,11 @@ from qdrant_client import QdrantClient
 from src.config import DB_DIR, COLLECTION_NAME, LLM_MODEL, TOP_K, MIN_SCORE
 from src.ingest import embed
 
-NOT_FOUND = "I could not find this information in the documentation."
+#Respuesta en checo por ahora
+NOT_FOUND = "Tuto informaci jsem v dokumentaci nenašel."
 SYSTEM_PROMPT = """You are an assistant for the technical documentation of a manufacturing plant.
 Answer ONLY using the context provided below.
-If the answer is not in the context, reply exactly: "I could not find this information in the documentation."
+If the answer is not in the context, reply exactly: "I could not find this information in the documentation or Tuto informaci jsem v dokumentaci nenašel." If the question is in Czech, answer in Czech. If the question is in English, answer in English."
 Answer briefly, in the same language as the question."""
 
 client = QdrantClient(path=str(DB_DIR))
