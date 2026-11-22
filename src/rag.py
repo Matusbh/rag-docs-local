@@ -5,6 +5,7 @@ from qdrant_client import QdrantClient
 
 from src.config import DB_DIR, COLLECTION_NAME, LLM_MODEL, TOP_K, MIN_SCORE
 from src.ingest import embed
+from src.db import get_qdrant_client
 
 #Respuesta en checo por ahora
 NOT_FOUND = "Tuto informaci jsem v dokumentaci nenašel."
@@ -13,7 +14,7 @@ Answer ONLY using the context provided below.
 If the answer is not in the context, reply exactly: "I could not find this information in the documentation or Tuto informaci jsem v dokumentaci nenašel." If the question is in Czech, answer in Czech. If the question is in English, answer in English."
 Answer briefly, in the same language as the question."""
 
-client = QdrantClient(path=str(DB_DIR))
+client = get_qdrant_client()
 
 def search(question):
     # le pasasmos una lista con una sola pregunta, y nos quedamos con el primer vector

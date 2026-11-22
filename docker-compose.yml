@@ -1,0 +1,26 @@
+# Lista de contenedores de mi aplicación
+services:
+  qdrant:
+    # Imagen oficial de Qdrant, ya hecha, de Docker Hub
+    image: qdrant/qdrant:latest
+    # Lo abrimos para ver el panel de Qdrant desde el navegador
+    ports:
+      - "6333:6333"
+    # Los vectores se guardan en un volumen: si se borra el contenedor, no hay que reindexar
+    volumes:
+      - qdrant_data:/qdrant/storage
+
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      QDRANT_URL: http://qdrant:6333
+      OLLAMA_HOST: http://host.docker.internal:11434
+    volumes:
+      - ./data:/app/data:ro
+    depends_on:
+      - qdrant
+
+volumes:
+  qdrant_data:

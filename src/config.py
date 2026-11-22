@@ -10,6 +10,7 @@
 
 #forma moderna de trabajar con rutas en py
 from pathlib import Path
+import os
 # Rutas de carpetas 
 #Carpeta raiz del proyecto + el archivo + resolve que lo convierte en ruta absoluta y sube dos puestos
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,9 +23,12 @@ COLLECTION_NAME = "docs"
 
 
 #Modelos 
-LLM_MODEL = "qwen2.5:7b"
+LLM_MODEL = os.getenv("LLM_MODEL", "qwen2.5:7b")
 #Modelo que convierte texto en vectores
-EMBED_MODEL = "bge-m3"
+EMBED_MODEL = os.getenv("EMBED_MODEL", "bge-m3")
+
+#En Docker apuntamos alservidor de Qdrant; en local queda vacio y se usa la carpeta vector_db
+QDRANT_URL = os.getenv("QDRANT_URL")
 
 #RAG parameters (chars)
 CHUNK_SIZE = 800

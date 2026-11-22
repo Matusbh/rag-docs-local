@@ -9,6 +9,7 @@ from pypdf import PdfReader
 from src.config import (
     DOCS_DIR, DB_DIR, COLLECTION_NAME, EMBED_MODEL, CHUNK_SIZE, CHUNK_OVERLAP
 )
+from src.db import get_qdrant_client
 
 #? Lee los pdfs
 def load_pages():
@@ -73,7 +74,7 @@ def embed(text):
 def save(chunks, embeddings):
     #Abre DB de la carpeta qdrant y la crea si no existe
     #es persistente por lo que se guarda en el disco y no se pierde si se cierra
-    client = QdrantClient(path=str(DB_DIR))
+    client = get_qdrant_client()
     if client.collection_exists(collection_name=COLLECTION_NAME):
     #borra la coleccion anterior para desde cero asi evitamos duplicados 
         client.delete_collection(COLLECTION_NAME)
