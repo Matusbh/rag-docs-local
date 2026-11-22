@@ -1,6 +1,6 @@
 # Qué hace: guarda todos los ajustes del proyecto (rutas, modelos, tamaño de los fragmentos). No ejecuta nada. Los demás archivos lo importan.
 
-# Por qué existe: si mañana quieres probar otro modelo o fragmentos más grandes, cambias una línea aquí y no tocas el resto del código. En la entrevista lo puedes explicar como «separar la configuración de la lógica».
+# Por qué existe: si mañana quiero probar otro modelo o fragmentos más grandes, cambio una línea aquí y no toco el resto del código. 
 
 # Estructura:
 
